@@ -1,0 +1,33 @@
+# Android fstab file.
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+
+# Mount point       FS           Device               2nd Device                 Flags
+/boot               emmc         /dev/block/bootdevice/by-name/boot              flags=backup=1;display="Kernel Image";flashimg=1
+/recovery           emmc         /dev/block/bootdevice/by-name/recovery          flags=backup=1;display="Recovery Image";flashimg=1
+/system_image       emmc         /dev/block/bootdevice/by-name/system            flags=backup=1;display="System Image";flashimg=1
+/vendor_image       emmc         /dev/block/bootdevice/by-name/oem               flags=backup=1;display="Vendor Image";flashimg=1
+
+# System & Vendor Mount Point
+/system             ext4         /dev/block/bootdevice/by-name/system            flags=display="System";backup=1;wipeingui
+/vendor             ext4         /dev/block/bootdevice/by-name/oem               flags=display="Vendor";backup=1;wipeingui
+
+# ETC Moint Point
+/data               f2fs         /dev/block/bootdevice/by-name/userdata          flags=encryptable=/dev/block/bootdevice/by-name/metadata
+/cache              ext4         /dev/block/bootdevice/by-name/cache             flags=display="Cache";backup=1;wipeingui
+
+# Persist Point
+/persist            ext4         /dev/block/bootdevice/by-name/persist           flags=display="Persist";backup=1
+/persist_image      emmc         /dev/block/bootdevice/by-name/persist           flags=display="Persist Image";backup=1;flashimg=1
+
+# Extra Point
+/logo               emmc         /dev/block/bootdevice/by-name/logo              flags=display="Boot Logo";backup=1;flashimg=1
+/firmware           ext4         /dev/block/bootdevice/by-name/modem             flags=display="Firmware";backup=1
+
+# Modem/EFS Mount Point (Combo)
+/modemst1           emmc         /dev/block/bootdevice/by-name/modemst1          flags=display="EFS";backup=1;
+/modemst2           emmc         /dev/block/bootdevice/by-name/modemst2          flags=subpartitionof=/modemst1;backup=1
+
+# SD Card & USB-OTG Points
+/external_sd        auto         /dev/block/mmcblk1p1  /dev/block/mmcblk1        flags=display="MicroSD Card";storage;wipeingui;removable
+/usb_otg            auto         /dev/block/sda1  /dev/block/sda                 flags=display="USB OTG";storage;wipeingui;removable
