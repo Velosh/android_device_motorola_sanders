@@ -23,14 +23,9 @@ $(call inherit-product, vendor/omni/config/common.mk)
 # Copy product files
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,device/motorola/sanders/recovery/root,recovery/root)
 
-# Workaround for keystore
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.hardware.keystore=msm8953
-
 # Device identifier. This must come after all inclusions
 PRODUCT_NAME := omni_sanders
 PRODUCT_DEVICE := sanders
 PRODUCT_BRAND := motorola
 PRODUCT_MODEL := Moto G5S Plus
 PRODUCT_MANUFACTURER := motorola
-
