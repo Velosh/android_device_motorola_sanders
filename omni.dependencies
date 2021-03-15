@@ -1,1 +1,8 @@
-[]
+[
+   {
+    "remote"     : "ArrowOS-Devices",
+    "repository" : "android_kernel_motorola_sanders",
+    "target_path": "kernel/motorola/sanders",
+    "branch"     : "arrow-11.0"
+   }
+]
