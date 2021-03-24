@@ -50,6 +50,9 @@ TARGET_KERNEL_CONFIG := sanders_defconfig
 TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_ARCH := arm64
 
+# Fix tzdata
+TW_EXCLUDE_TZDATA := true
+
 # Kernel: mkbootimgs args
 BOARD_MKBOOTIMG_ARGS += --pagesize $(BOARD_KERNEL_PAGESIZE)
 BOARD_MKBOOTIMG_ARGS := --kernel_offset $(BOARD_KERNEL_OFFSET)
